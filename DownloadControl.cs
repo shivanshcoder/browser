@@ -12,12 +12,13 @@ namespace Browser
 {
     public partial class DownloadControl : Form
     {
-        public DownloadControl(string filename)
+        public int id;
+        public DownloadControl(int id, string filename)
         {
             InitializeComponent();
             this.filename.Text = filename;
-
-            this.FormBorderStyle = FormBorderStyle.None;
+            this.id = id;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             // Set the start position of the form to the center of the screen.
             this.StartPosition = FormStartPosition.CenterScreen;

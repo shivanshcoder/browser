@@ -28,6 +28,12 @@ namespace CefSharp.Example.Handlers
             controls = new Dictionary<int, DownloadControl>();
         }
 
+        public void Form1_FormClosing(Object sender, FormClosedEventArgs e)
+        {
+            DownloadControl _dc = (DownloadControl)sender;
+
+            controls.Remove(_dc.id);
+        }
 
 
         public void OnBeforeDownload(IWebBrowser chromiumWebBrowser, IBrowser browser, DownloadItem downloadItem, IBeforeDownloadCallback callback)
@@ -35,10 +41,12 @@ namespace CefSharp.Example.Handlers
 
             OnBeforeDownloadFired?.Invoke(this, downloadItem);
 
-            dc = new DownloadControl(downloadItem.SuggestedFileName.ToString());
+            dc = new DownloadControl(downloadItem.Id, downloadItem.SuggestedFileName.ToString());
 
             controls.Add(downloadItem.Id, dc);
+            dc.FormClosed += Form1_FormClosing;
             dc.Show();
+            dc.BringToFront();
             //controls[downloadItem.Id].Show();
             //f.Invoke(new Action(() =>
             //{
@@ -64,7 +72,6 @@ namespace CefSharp.Example.Handlers
 
             //controls.Add(downloadItem.GetHashCode(), new DownloadControl());
             if (controls.TryGetValue(downloadItem.Id, out _))
-                
                 controls[downloadItem.Id].Invoke(new Action(() =>
                 {
                     controls[downloadItem.Id].updateVals(downloadItem.PercentComplete);
