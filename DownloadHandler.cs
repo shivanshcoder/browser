@@ -21,27 +21,33 @@ namespace CefSharp.Example.Handlers
 
         private Dictionary<int, DownloadControl> controls;
 
+        private DownloadControl dc;
         public DownloadHandler(Form ff)
         {
             f = ff;
             controls = new Dictionary<int, DownloadControl>();
         }
 
+
+
         public void OnBeforeDownload(IWebBrowser chromiumWebBrowser, IBrowser browser, DownloadItem downloadItem, IBeforeDownloadCallback callback)
         {
 
             OnBeforeDownloadFired?.Invoke(this, downloadItem);
-            
-            controls.Add(downloadItem.GetHashCode(), new DownloadControl());
 
+            dc = new DownloadControl(downloadItem.SuggestedFileName.ToString());
 
-            f.Invoke(new Action(() =>
-            {
+            controls.Add(downloadItem.Id, dc);
+            dc.Show();
+            //controls[downloadItem.Id].Show();
+            //f.Invoke(new Action(() =>
+            //{
 
-                f.Controls.Add(controls[downloadItem.GetHashCode()]);
+            //    f.Controls.Add(controls[downloadItem.Id]);
 
-            }
-                ));
+            //}
+            //    ));
+
 
 
             if (!callback.IsDisposed)
@@ -57,8 +63,13 @@ namespace CefSharp.Example.Handlers
         {
 
             //controls.Add(downloadItem.GetHashCode(), new DownloadControl());
-            if (controls.TryGetValue(downloadItem.GetHashCode(), out _))
-                controls[downloadItem.GetHashCode()].updateVals(downloadItem.PercentComplete);
+            if (controls.TryGetValue(downloadItem.Id, out _))
+                
+                controls[downloadItem.Id].Invoke(new Action(() =>
+                {
+                    controls[downloadItem.Id].updateVals(downloadItem.PercentComplete);
+
+                }));
             //controls[downloadItem.GetHashCode()].updateVals(downloadItem.PercentComplete);
             //_bar.Invoke(
             //    new Action(() =>

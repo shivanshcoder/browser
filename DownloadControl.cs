@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace Browser
 {
-    public partial class DownloadControl : UserControl
+    public partial class DownloadControl : Form
     {
-        public DownloadControl()
+        public DownloadControl(string filename)
         {
             InitializeComponent();
+            this.filename.Text = filename;
+
+            this.FormBorderStyle = FormBorderStyle.None;
+
+            // Set the start position of the form to the center of the screen.
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void DownloadControl_Load(object sender, EventArgs e)
@@ -26,6 +32,7 @@ namespace Browser
         {
             progressBar1.Value = percent;
             progressBar1.Maximum = 100;
+            percentage.Text = percent.ToString();
         }
     }
 }

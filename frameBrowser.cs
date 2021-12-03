@@ -17,12 +17,15 @@ namespace Browser
     {
         public frameBrowser()
         {
+            __controls = new Dictionary<int, DownloadControl>();
             InitializeComponent();
             InitializeChromium();
         }
 
         public ChromiumWebBrowser browser;
+        public DownloadControl control_;
 
+        private Dictionary<int, DownloadControl> __controls;
         public void InitializeChromium()
         {
             CefSettings settings = new CefSettings();
@@ -33,7 +36,6 @@ namespace Browser
             browser = new ChromiumWebBrowser("https://youtube.com");
 
             browser.DownloadHandler = new DownloadHandler(this);
-
 
 
             browser_panel.Controls.Add(browser);
@@ -117,6 +119,11 @@ namespace Browser
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
