@@ -47,6 +47,9 @@ namespace CefSharp.Example.Handlers
             dc.FormClosed += Form1_FormClosing;
             dc.Show();
             dc.BringToFront();
+            dc.Activate();
+            dc.TopMost = true;
+           
             //controls[downloadItem.Id].Show();
             //f.Invoke(new Action(() =>
             //{
@@ -70,11 +73,12 @@ namespace CefSharp.Example.Handlers
         public void OnDownloadUpdated(IWebBrowser chromiumWebBrowser, IBrowser browser, DownloadItem downloadItem, IDownloadItemCallback callback)
         {
 
+            // TODO add cancel functionality
             //controls.Add(downloadItem.GetHashCode(), new DownloadControl());
             if (controls.TryGetValue(downloadItem.Id, out _))
                 controls[downloadItem.Id].Invoke(new Action(() =>
                 {
-                    controls[downloadItem.Id].updateVals(downloadItem.PercentComplete);
+                    controls[downloadItem.Id].updateVals(downloadItem.PercentComplete, callback);
 
                 }));
             //controls[downloadItem.GetHashCode()].updateVals(downloadItem.PercentComplete);

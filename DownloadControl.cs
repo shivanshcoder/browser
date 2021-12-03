@@ -7,12 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CefSharp;
 
 namespace Browser
 {
     public partial class DownloadControl : Form
     {
+
+        IDownloadItemCallback callback;
+
         public int id;
+        bool paused = false;
         public DownloadControl(int id, string filename)
         {
             InitializeComponent();
@@ -29,11 +34,21 @@ namespace Browser
 
         }
 
-        public void updateVals(int percent)
+        public void updateVals(int percent, IDownloadItemCallback callback)
         {
+            this.callback = callback;
             progressBar1.Value = percent;
             progressBar1.Maximum = 100;
             percentage.Text = percent.ToString();
+        }
+
+        private void pause_Click(object sender, EventArgs e)
+        {
+            if (paused)
+                callback.Resume();
+            else
+                callback.Pause();
+            paused = paused ^ true;
         }
     }
 }

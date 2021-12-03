@@ -32,14 +32,15 @@ namespace Browser
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.filename = new System.Windows.Forms.Label();
             this.percentage = new System.Windows.Forms.Label();
-            this.speed = new System.Windows.Forms.Label();
+            this.pause = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 61);
+            this.progressBar1.Location = new System.Drawing.Point(12, 29);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(342, 23);
+            this.progressBar1.Size = new System.Drawing.Size(342, 32);
             this.progressBar1.TabIndex = 0;
             // 
             // filename
@@ -54,27 +55,38 @@ namespace Browser
             // percentage
             // 
             this.percentage.AutoSize = true;
-            this.percentage.Location = new System.Drawing.Point(150, 61);
+            this.percentage.Location = new System.Drawing.Point(147, 39);
             this.percentage.Name = "percentage";
             this.percentage.Size = new System.Drawing.Size(62, 13);
             this.percentage.TabIndex = 2;
             this.percentage.Text = "Percentage";
             // 
-            // speed
+            // pause
             // 
-            this.speed.AutoSize = true;
-            this.speed.Location = new System.Drawing.Point(13, 36);
-            this.speed.Name = "speed";
-            this.speed.Size = new System.Drawing.Size(38, 13);
-            this.speed.TabIndex = 3;
-            this.speed.Text = "Speed";
+            this.pause.Location = new System.Drawing.Point(182, 71);
+            this.pause.Name = "pause";
+            this.pause.Size = new System.Drawing.Size(75, 23);
+            this.pause.TabIndex = 3;
+            this.pause.Text = "pause";
+            this.pause.UseVisualStyleBackColor = true;
+            this.pause.Click += new System.EventHandler(this.pause_Click);
+            // 
+            // cancel
+            // 
+            this.cancel.Location = new System.Drawing.Point(279, 71);
+            this.cancel.Name = "cancel";
+            this.cancel.Size = new System.Drawing.Size(75, 23);
+            this.cancel.TabIndex = 4;
+            this.cancel.Text = "cancel";
+            this.cancel.UseVisualStyleBackColor = true;
             // 
             // DownloadControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 96);
-            this.Controls.Add(this.speed);
+            this.ClientSize = new System.Drawing.Size(366, 106);
+            this.Controls.Add(this.cancel);
+            this.Controls.Add(this.pause);
             this.Controls.Add(this.percentage);
             this.Controls.Add(this.filename);
             this.Controls.Add(this.progressBar1);
@@ -92,6 +104,7 @@ namespace Browser
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label filename;
         private System.Windows.Forms.Label percentage;
-        private System.Windows.Forms.Label speed;
+        private System.Windows.Forms.Button pause;
+        private System.Windows.Forms.Button cancel;
     }
 }
