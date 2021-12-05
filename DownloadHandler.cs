@@ -42,25 +42,11 @@ namespace CefSharp.Example.Handlers
 
             controls.Add(downloadItem.Id, dc);
             dc.FormClosed += Form1_FormClosing;
-            //dc.ControlBox = false;
-
 
             dc.Show();
             dc.BringToFront();
             dc.Activate();
-            dc.TopMost = true;
            
-            //controls[downloadItem.Id].Show();
-            //f.Invoke(new Action(() =>
-            //{
-
-            //    f.Controls.Add(controls[downloadItem.Id]);
-
-            //}
-            //    ));
-
-
-
             if (!callback.IsDisposed)
             {
                 using (callback)

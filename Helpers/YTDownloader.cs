@@ -85,7 +85,7 @@ namespace Browser.Helpers
             // Incase of error show error window and exit the window
             ytdlProc.ErrorReceived += (o, e) =>
             {
-                var msg = MessageBox.Show("Error", e.Data, MessageBoxButtons.OK);
+                var msg = MessageBox.Show( e.Data, "Error", MessageBoxButtons.OK);
                 this.Close();
                 Console.WriteLine("ERROR: " + e.Data);
             };
@@ -98,7 +98,7 @@ namespace Browser.Helpers
                 timeLabel.Text = "Time Left: " + p.ETA;
                 if (p.Progress == 1)
                 {
-                    MessageBox.Show("Success", "Successfully Downloaded video", MessageBoxButtons.OK);
+                    MessageBox.Show( "Successfully Downloaded video", "Success", MessageBoxButtons.OK);
                     this.Close();
                 }
 

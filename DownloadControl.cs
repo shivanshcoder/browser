@@ -39,6 +39,11 @@ namespace Browser
             
             this.callback = callback;
             progressBar1.Value = percent;
+            if (percent == 100)
+            {
+                MessageBox.Show( "File Downloaded", "Success", MessageBoxButtons.OK);
+                this.Close();
+            }
             progressBar1.Maximum = 100;
             percentage.Text = percent.ToString();
         }
