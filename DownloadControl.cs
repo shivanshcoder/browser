@@ -14,7 +14,7 @@ namespace Browser
     public partial class DownloadControl : Form
     {
 
-        IDownloadItemCallback callback;
+        public IDownloadItemCallback callback;
 
         public int id;
         bool paused = false;
@@ -36,6 +36,7 @@ namespace Browser
 
         public void updateVals(int percent, IDownloadItemCallback callback)
         {
+            
             this.callback = callback;
             progressBar1.Value = percent;
             progressBar1.Maximum = 100;
@@ -45,10 +46,27 @@ namespace Browser
         private void pause_Click(object sender, EventArgs e)
         {
             if (paused)
+            {
                 callback.Resume();
+                this.pause.Text = "Pause";
+            }
             else
+            {
                 callback.Pause();
+                this.pause.Text = "Resume";
+            }
             paused = paused ^ true;
+        }
+
+        private void hide_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            callback.Cancel();
+            this.Close();
         }
     }
 }

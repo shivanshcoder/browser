@@ -34,6 +34,7 @@ namespace Browser
             this.percentage = new System.Windows.Forms.Label();
             this.pause = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
+            this.hide = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -55,6 +56,7 @@ namespace Browser
             // percentage
             // 
             this.percentage.AutoSize = true;
+            this.percentage.BackColor = System.Drawing.Color.Transparent;
             this.percentage.Location = new System.Drawing.Point(147, 39);
             this.percentage.Name = "percentage";
             this.percentage.Size = new System.Drawing.Size(62, 13);
@@ -63,7 +65,7 @@ namespace Browser
             // 
             // pause
             // 
-            this.pause.Location = new System.Drawing.Point(182, 71);
+            this.pause.Location = new System.Drawing.Point(150, 71);
             this.pause.Name = "pause";
             this.pause.Size = new System.Drawing.Size(75, 23);
             this.pause.TabIndex = 3;
@@ -79,12 +81,24 @@ namespace Browser
             this.cancel.TabIndex = 4;
             this.cancel.Text = "cancel";
             this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
+            // 
+            // hide
+            // 
+            this.hide.Location = new System.Drawing.Point(16, 71);
+            this.hide.Name = "hide";
+            this.hide.Size = new System.Drawing.Size(75, 23);
+            this.hide.TabIndex = 5;
+            this.hide.Text = "hide";
+            this.hide.UseVisualStyleBackColor = true;
+            this.hide.Click += new System.EventHandler(this.hide_Click);
             // 
             // DownloadControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(366, 106);
+            this.Controls.Add(this.hide);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.pause);
             this.Controls.Add(this.percentage);
@@ -106,5 +120,6 @@ namespace Browser
         private System.Windows.Forms.Label percentage;
         private System.Windows.Forms.Button pause;
         private System.Windows.Forms.Button cancel;
+        private System.Windows.Forms.Button hide;
     }
 }

@@ -29,30 +29,32 @@ namespace Browser
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frameBrowser));
             this.panelBody = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.downloadBtn = new System.Windows.Forms.Button();
+            this.bookmarkBtn = new System.Windows.Forms.Button();
+            this.refreshBtn = new System.Windows.Forms.Button();
+            this.forwardBtn = new System.Windows.Forms.Button();
+            this.backBtn = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
+            this.lockIcon = new System.Windows.Forms.Button();
             this.textURL = new System.Windows.Forms.TextBox();
             this.browser_panel = new System.Windows.Forms.Panel();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.downloadVideoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBody.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.browser_panel.SuspendLayout();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelBody
             // 
-            this.panelBody.Controls.Add(this.button5);
-            this.panelBody.Controls.Add(this.button4);
-            this.panelBody.Controls.Add(this.button3);
-            this.panelBody.Controls.Add(this.button2);
-            this.panelBody.Controls.Add(this.button1);
+            this.panelBody.Controls.Add(this.downloadBtn);
+            this.panelBody.Controls.Add(this.bookmarkBtn);
+            this.panelBody.Controls.Add(this.refreshBtn);
+            this.panelBody.Controls.Add(this.forwardBtn);
+            this.panelBody.Controls.Add(this.backBtn);
             this.panelBody.Controls.Add(this.panel4);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelBody.Location = new System.Drawing.Point(0, 0);
@@ -60,79 +62,81 @@ namespace Browser
             this.panelBody.Size = new System.Drawing.Size(947, 58);
             this.panelBody.TabIndex = 1;
             // 
-            // button5
+            // downloadBtn
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(821, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(30, 33);
-            this.button5.TabIndex = 4;
-            this.button5.UseVisualStyleBackColor = false;
+            this.downloadBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.downloadBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.downloadBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("downloadBtn.BackgroundImage")));
+            this.downloadBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.downloadBtn.FlatAppearance.BorderSize = 0;
+            this.downloadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.downloadBtn.Location = new System.Drawing.Point(821, 12);
+            this.downloadBtn.Name = "downloadBtn";
+            this.downloadBtn.Size = new System.Drawing.Size(30, 33);
+            this.downloadBtn.TabIndex = 4;
+            this.downloadBtn.UseVisualStyleBackColor = false;
+            this.downloadBtn.Click += new System.EventHandler(this.downloadBtn_Click);
             // 
-            // button4
+            // bookmarkBtn
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(785, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 33);
-            this.button4.TabIndex = 3;
-            this.button4.UseVisualStyleBackColor = false;
+            this.bookmarkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bookmarkBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.bookmarkBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bookmarkBtn.BackgroundImage")));
+            this.bookmarkBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bookmarkBtn.FlatAppearance.BorderSize = 0;
+            this.bookmarkBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bookmarkBtn.Location = new System.Drawing.Point(785, 12);
+            this.bookmarkBtn.Name = "bookmarkBtn";
+            this.bookmarkBtn.Size = new System.Drawing.Size(30, 33);
+            this.bookmarkBtn.TabIndex = 3;
+            this.bookmarkBtn.UseVisualStyleBackColor = false;
+            this.bookmarkBtn.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
+            // refreshBtn
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(84, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(30, 33);
-            this.button3.TabIndex = 2;
-            this.button3.UseVisualStyleBackColor = false;
+            this.refreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.refreshBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("refreshBtn.BackgroundImage")));
+            this.refreshBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.refreshBtn.FlatAppearance.BorderSize = 0;
+            this.refreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshBtn.Location = new System.Drawing.Point(84, 12);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(30, 33);
+            this.refreshBtn.TabIndex = 2;
+            this.refreshBtn.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // forwardBtn
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(48, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(30, 33);
-            this.button2.TabIndex = 1;
-            this.button2.UseVisualStyleBackColor = false;
+            this.forwardBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.forwardBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("forwardBtn.BackgroundImage")));
+            this.forwardBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.forwardBtn.FlatAppearance.BorderSize = 0;
+            this.forwardBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.forwardBtn.Location = new System.Drawing.Point(48, 12);
+            this.forwardBtn.Name = "forwardBtn";
+            this.forwardBtn.Size = new System.Drawing.Size(30, 33);
+            this.forwardBtn.TabIndex = 1;
+            this.forwardBtn.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // backBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 33);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = false;
+            this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.backBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backBtn.BackgroundImage")));
+            this.backBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.backBtn.FlatAppearance.BorderSize = 0;
+            this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backBtn.Location = new System.Drawing.Point(12, 12);
+            this.backBtn.Name = "backBtn";
+            this.backBtn.Size = new System.Drawing.Size(30, 33);
+            this.backBtn.TabIndex = 0;
+            this.backBtn.UseVisualStyleBackColor = false;
             // 
             // panel4
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.Gray;
-            this.panel4.Controls.Add(this.button6);
+            this.panel4.Controls.Add(this.lockIcon);
             this.panel4.Controls.Add(this.textURL);
             this.panel4.Location = new System.Drawing.Point(125, 12);
             this.panel4.Margin = new System.Windows.Forms.Padding(30);
@@ -140,19 +144,18 @@ namespace Browser
             this.panel4.Size = new System.Drawing.Size(651, 33);
             this.panel4.TabIndex = 0;
             // 
-            // button6
+            // lockIcon
             // 
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(3, 7);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(20, 22);
-            this.button6.TabIndex = 5;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.lockIcon.BackColor = System.Drawing.Color.Transparent;
+            this.lockIcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lockIcon.BackgroundImage")));
+            this.lockIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.lockIcon.FlatAppearance.BorderSize = 0;
+            this.lockIcon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lockIcon.Location = new System.Drawing.Point(3, 7);
+            this.lockIcon.Name = "lockIcon";
+            this.lockIcon.Size = new System.Drawing.Size(20, 22);
+            this.lockIcon.TabIndex = 5;
+            this.lockIcon.UseVisualStyleBackColor = false;
             // 
             // textURL
             // 
@@ -160,6 +163,8 @@ namespace Browser
             this.textURL.AccessibleName = "";
             this.textURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textURL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textURL.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.AllUrl;
             this.textURL.BackColor = System.Drawing.Color.Gray;
             this.textURL.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textURL.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -176,20 +181,26 @@ namespace Browser
             // browser_panel
             // 
             this.browser_panel.BackColor = System.Drawing.Color.Gray;
-            this.browser_panel.Controls.Add(this.progressBar1);
+            this.browser_panel.ContextMenuStrip = this.contextMenuStrip;
             this.browser_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browser_panel.Location = new System.Drawing.Point(0, 58);
             this.browser_panel.Name = "browser_panel";
             this.browser_panel.Size = new System.Drawing.Size(947, 475);
             this.browser_panel.TabIndex = 3;
             // 
-            // progressBar1
+            // contextMenuStrip
             // 
-            this.progressBar1.Location = new System.Drawing.Point(14, 440);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(176, 23);
-            this.progressBar1.TabIndex = 0;
-            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.downloadVideoToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(181, 48);
+            // 
+            // downloadVideoToolStripMenuItem
+            // 
+            this.downloadVideoToolStripMenuItem.Name = "downloadVideoToolStripMenuItem";
+            this.downloadVideoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downloadVideoToolStripMenuItem.Text = "Download Video";
+            this.downloadVideoToolStripMenuItem.Click += new System.EventHandler(this.downloadVideoToolStripMenuItem_Click);
             // 
             // frameBrowser
             // 
@@ -206,7 +217,7 @@ namespace Browser
             this.panelBody.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.browser_panel.ResumeLayout(false);
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -216,12 +227,13 @@ namespace Browser
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel browser_panel;
         private System.Windows.Forms.TextBox textURL;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button refreshBtn;
+        private System.Windows.Forms.Button forwardBtn;
+        private System.Windows.Forms.Button backBtn;
+        private System.Windows.Forms.Button downloadBtn;
+        private System.Windows.Forms.Button bookmarkBtn;
+        private System.Windows.Forms.Button lockIcon;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem downloadVideoToolStripMenuItem;
     }
 }

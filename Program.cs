@@ -22,9 +22,9 @@ namespace Browser
             container.Tabs.Add(
                 new EasyTabs.TitleBarTab(container)
                 {
-                    Content = new frameBrowser
+                    Content = new frameBrowser()
                     {
-                        Text = "New Tab"
+                        Text = "New Tab",
                     }
                 }
             );
@@ -35,5 +35,7 @@ namespace Browser
             applicationContext.Start(container);
             Application.Run(applicationContext);
         }
+
+
     }
 }

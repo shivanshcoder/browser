@@ -15,23 +15,20 @@ namespace CefSharp.Example.Handlers
 
         public event EventHandler<DownloadItem> OnDownloadUpdatedFired;
 
-        private ProgressBar _bar;
-
-        private Form f;
-
         private Dictionary<int, DownloadControl> controls;
 
         private DownloadControl dc;
-        public DownloadHandler(Form ff)
+        public DownloadHandler()
         {
-            f = ff;
             controls = new Dictionary<int, DownloadControl>();
         }
 
         public void Form1_FormClosing(Object sender, FormClosedEventArgs e)
         {
             DownloadControl _dc = (DownloadControl)sender;
-
+            if (!_dc.callback.IsDisposed)
+                _dc.callback.Cancel();
+            
             controls.Remove(_dc.id);
         }
 
@@ -45,6 +42,9 @@ namespace CefSharp.Example.Handlers
 
             controls.Add(downloadItem.Id, dc);
             dc.FormClosed += Form1_FormClosing;
+            //dc.ControlBox = false;
+
+
             dc.Show();
             dc.BringToFront();
             dc.Activate();
@@ -73,27 +73,32 @@ namespace CefSharp.Example.Handlers
         public void OnDownloadUpdated(IWebBrowser chromiumWebBrowser, IBrowser browser, DownloadItem downloadItem, IDownloadItemCallback callback)
         {
 
-            // TODO add cancel functionality
-            //controls.Add(downloadItem.GetHashCode(), new DownloadControl());
             if (controls.TryGetValue(downloadItem.Id, out _))
                 controls[downloadItem.Id].Invoke(new Action(() =>
                 {
                     controls[downloadItem.Id].updateVals(downloadItem.PercentComplete, callback);
 
                 }));
-            //controls[downloadItem.GetHashCode()].updateVals(downloadItem.PercentComplete);
-            //_bar.Invoke(
-            //    new Action(() =>
-            //        {
-            //        //Debug.Print(downloadItem);
-            //        _bar.Value = downloadItem.PercentComplete;
-            //        _bar.Maximum = (int)(100);
-            //        }
-            //));
+
+
 
             OnDownloadUpdatedFired?.Invoke(this, downloadItem);
         }
 
+
+        public void showAll()
+        {
+
+            foreach (var item in controls.Keys)
+            {
+                controls[item].Invoke(new Action(()=>
+                {
+                    controls[item].Show();
+
+                }));
+            }
+
+        }
         
     }
 }

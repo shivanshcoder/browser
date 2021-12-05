@@ -1,4 +1,4 @@
-﻿  using System;
+﻿using System;
 using EasyTabs;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,21 +11,34 @@ using System.Windows.Forms;
 using CefSharp.WinForms;
 using CefSharp;
 using CefSharp.Example.Handlers;
+
+using Browser.Helpers;
+
 namespace Browser
 {
     public partial class frameBrowser : Form
     {
-        public frameBrowser()
-        {
-            __controls = new Dictionary<int, DownloadControl>();
-            InitializeComponent();
-            InitializeChromium();
-        }
+        static DownloadHandler static_download = new DownloadHandler();
 
         public ChromiumWebBrowser browser;
         public DownloadControl control_;
 
+
+        //static List<Tuple<String, DateTime>> history;
+        //static List<String> bookmarks;
+
         private Dictionary<int, DownloadControl> __controls;
+        public frameBrowser()
+        {
+            __controls = new Dictionary<int, DownloadControl>();
+            
+            InitializeComponent();
+            InitializeChromium();
+
+            LoadHistory();
+            LoadBookmarks();
+        }
+
         public void InitializeChromium()
         {
             CefSettings settings = new CefSettings();
@@ -35,8 +48,11 @@ namespace Browser
 
             browser = new ChromiumWebBrowser("https://youtube.com");
 
-            browser.DownloadHandler = new DownloadHandler(this);
+            browser.MenuHandler = new BrowserMenuHandler();
 
+            browser.DownloadHandler = static_download;
+
+            
 
             browser_panel.Controls.Add(browser);
             browser.Dock = DockStyle.Fill;
@@ -46,6 +62,20 @@ namespace Browser
 
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
         {
+            // https://youtu.be/jn77B
+            // https://www.youtube.com/watch?v=
+            // Regex Pattern for youtube
+            // http(s?):\/\/((www.)?)youtu(\.?)be
+            // http(s ?):\/\/ ((www.) ?)youtu(\.?)be((.com) ?)\/ (.{ 1,})
+
+            //if (rgx.IsMatch(browser.Address))
+            //{
+            //    contextMenuStrip.Enabled = true;
+            //}
+            //else
+            //{
+            //    contextMenuStrip.Enabled = true;
+            //}
             this.Invoke((Action)delegate
             {
                 textURL.Text = browser.Address;
@@ -61,71 +91,67 @@ namespace Browser
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-        private void panel1_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void textURL_KeyUp(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {
                 loadURL(textURL.Text.Trim());
-                //textURL.ForeColor = Color.Green;
             }
         }
 
         void loadURL(string url)
         {
+            String s;
             if (url.StartsWith("http"))
             {
-                browser.Load(url);
+                s = url;
             }
             else
             {
-                browser.Load($"https://www.google.com/search?q={url}");
+                s = $"https://www.google.com/search?q={url}";
             }
+            append_history(s);
+            browser.Load(s);
+        }
+
+        void append_history(string url)
+        {
+
+        }
+
+        void LoadHistory()
+        {
+
+        }
+
+        void LoadBookmarks()
+        {
+
         }
 
         private void textURL_MouseClick(object sender, MouseEventArgs e)
         {
-
-            textURL.Text = "";
+            if (!String.IsNullOrEmpty(textURL.Text))
+            {
+                textURL.SelectionStart = 0;
+                textURL.SelectionLength = textURL.Text.Length;
+            }
             //textURL.ForeColor = Color.Red;
         }
 
-        private void progressBar1_Click(object sender, EventArgs e)
+        private void downloadBtn_Click(object sender, EventArgs e)
+        {
+            static_download.showAll();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void downloadVideoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Console.WriteLine("DOWNLOAD THE DAMN VIDEO");
         }
     }
 }
