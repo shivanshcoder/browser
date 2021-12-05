@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using CefSharp.WinForms;
 using CefSharp;
 using CefSharp.Example.Handlers;
-
+using System.Text.RegularExpressions;
 using Browser.Helpers;
 
 namespace Browser
@@ -21,22 +21,16 @@ namespace Browser
         static DownloadHandler static_download = new DownloadHandler();
 
         public ChromiumWebBrowser browser;
-        public DownloadControl control_;
 
+        // Used for checking if the url is a website or a search query
+        static private Regex urlRgx = new Regex(@"[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)");
 
-        //static List<Tuple<String, DateTime>> history;
-        //static List<String> bookmarks;
-
-        private Dictionary<int, DownloadControl> __controls;
         public frameBrowser()
         {
-            __controls = new Dictionary<int, DownloadControl>();
             
             InitializeComponent();
             InitializeChromium();
 
-            LoadHistory();
-            LoadBookmarks();
         }
 
         public void InitializeChromium()
@@ -46,7 +40,7 @@ namespace Browser
             if(!Cef.IsInitialized)
                 Cef.Initialize(settings);
 
-            browser = new ChromiumWebBrowser("https://youtube.com");
+            browser = new ChromiumWebBrowser("https://google.com");
 
             browser.MenuHandler = new BrowserMenuHandler();
 
@@ -62,20 +56,7 @@ namespace Browser
 
         private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
         {
-            // https://youtu.be/jn77B
-            // https://www.youtube.com/watch?v=
-            // Regex Pattern for youtube
-            // http(s?):\/\/((www.)?)youtu(\.?)be
-            // http(s ?):\/\/ ((www.) ?)youtu(\.?)be((.com) ?)\/ (.{ 1,})
-
-            //if (rgx.IsMatch(browser.Address))
-            //{
-            //    contextMenuStrip.Enabled = true;
-            //}
-            //else
-            //{
-            //    contextMenuStrip.Enabled = true;
-            //}
+            // Update the browser address after loading
             this.Invoke((Action)delegate
             {
                 textURL.Text = browser.Address;
@@ -102,7 +83,8 @@ namespace Browser
         void loadURL(string url)
         {
             String s;
-            if (url.StartsWith("http"))
+            //if (url.StartsWith("http"))
+            if(urlRgx.IsMatch(url))
             {
                 s = url;
             }
@@ -110,48 +92,51 @@ namespace Browser
             {
                 s = $"https://www.google.com/search?q={url}";
             }
-            append_history(s);
             browser.Load(s);
         }
 
-        void append_history(string url)
-        {
-
-        }
-
-        void LoadHistory()
-        {
-
-        }
-
-        void LoadBookmarks()
-        {
-
-        }
-
+        // On click of URL text box
         private void textURL_MouseClick(object sender, MouseEventArgs e)
         {
+            // Select the URL text
             if (!String.IsNullOrEmpty(textURL.Text))
             {
                 textURL.SelectionStart = 0;
                 textURL.SelectionLength = textURL.Text.Length;
             }
-            //textURL.ForeColor = Color.Red;
         }
 
+        // Shows all the downloads
         private void downloadBtn_Click(object sender, EventArgs e)
         {
             static_download.showAll();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
 
+       
+
+        // Browser Go Back
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            if (browser.CanGoBack)
+            {
+                browser.Back();
+            }
         }
 
-        private void downloadVideoToolStripMenuItem_Click(object sender, EventArgs e)
+        // Browser Go Forward
+        private void forwardBtn_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("DOWNLOAD THE DAMN VIDEO");
+            if (browser.CanGoForward)
+            {
+                browser.Forward();
+            }
+        }
+
+        // Page Refresh
+        private void refreshBtn_Click(object sender, EventArgs e)
+        {
+            browser.Reload();
         }
     }
 }

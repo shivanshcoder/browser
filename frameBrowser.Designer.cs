@@ -29,11 +29,9 @@ namespace Browser
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frameBrowser));
             this.panelBody = new System.Windows.Forms.Panel();
             this.downloadBtn = new System.Windows.Forms.Button();
-            this.bookmarkBtn = new System.Windows.Forms.Button();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.forwardBtn = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
@@ -41,17 +39,13 @@ namespace Browser
             this.lockIcon = new System.Windows.Forms.Button();
             this.textURL = new System.Windows.Forms.TextBox();
             this.browser_panel = new System.Windows.Forms.Panel();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.downloadVideoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBody.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelBody
             // 
             this.panelBody.Controls.Add(this.downloadBtn);
-            this.panelBody.Controls.Add(this.bookmarkBtn);
             this.panelBody.Controls.Add(this.refreshBtn);
             this.panelBody.Controls.Add(this.forwardBtn);
             this.panelBody.Controls.Add(this.backBtn);
@@ -70,27 +64,12 @@ namespace Browser
             this.downloadBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.downloadBtn.FlatAppearance.BorderSize = 0;
             this.downloadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.downloadBtn.Location = new System.Drawing.Point(821, 12);
+            this.downloadBtn.Location = new System.Drawing.Point(905, 12);
             this.downloadBtn.Name = "downloadBtn";
             this.downloadBtn.Size = new System.Drawing.Size(30, 33);
             this.downloadBtn.TabIndex = 4;
             this.downloadBtn.UseVisualStyleBackColor = false;
             this.downloadBtn.Click += new System.EventHandler(this.downloadBtn_Click);
-            // 
-            // bookmarkBtn
-            // 
-            this.bookmarkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bookmarkBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.bookmarkBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bookmarkBtn.BackgroundImage")));
-            this.bookmarkBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bookmarkBtn.FlatAppearance.BorderSize = 0;
-            this.bookmarkBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bookmarkBtn.Location = new System.Drawing.Point(785, 12);
-            this.bookmarkBtn.Name = "bookmarkBtn";
-            this.bookmarkBtn.Size = new System.Drawing.Size(30, 33);
-            this.bookmarkBtn.TabIndex = 3;
-            this.bookmarkBtn.UseVisualStyleBackColor = false;
-            this.bookmarkBtn.Click += new System.EventHandler(this.button4_Click);
             // 
             // refreshBtn
             // 
@@ -104,6 +83,7 @@ namespace Browser
             this.refreshBtn.Size = new System.Drawing.Size(30, 33);
             this.refreshBtn.TabIndex = 2;
             this.refreshBtn.UseVisualStyleBackColor = false;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // forwardBtn
             // 
@@ -117,6 +97,7 @@ namespace Browser
             this.forwardBtn.Size = new System.Drawing.Size(30, 33);
             this.forwardBtn.TabIndex = 1;
             this.forwardBtn.UseVisualStyleBackColor = false;
+            this.forwardBtn.Click += new System.EventHandler(this.forwardBtn_Click);
             // 
             // backBtn
             // 
@@ -130,6 +111,7 @@ namespace Browser
             this.backBtn.Size = new System.Drawing.Size(30, 33);
             this.backBtn.TabIndex = 0;
             this.backBtn.UseVisualStyleBackColor = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // panel4
             // 
@@ -141,7 +123,7 @@ namespace Browser
             this.panel4.Location = new System.Drawing.Point(125, 12);
             this.panel4.Margin = new System.Windows.Forms.Padding(30);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(651, 33);
+            this.panel4.Size = new System.Drawing.Size(772, 33);
             this.panel4.TabIndex = 0;
             // 
             // lockIcon
@@ -172,7 +154,7 @@ namespace Browser
             this.textURL.Location = new System.Drawing.Point(31, 3);
             this.textURL.Margin = new System.Windows.Forms.Padding(5);
             this.textURL.Name = "textURL";
-            this.textURL.Size = new System.Drawing.Size(601, 26);
+            this.textURL.Size = new System.Drawing.Size(722, 26);
             this.textURL.TabIndex = 0;
             this.textURL.Text = "Enter Address";
             this.textURL.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textURL_MouseClick);
@@ -181,26 +163,11 @@ namespace Browser
             // browser_panel
             // 
             this.browser_panel.BackColor = System.Drawing.Color.Gray;
-            this.browser_panel.ContextMenuStrip = this.contextMenuStrip;
             this.browser_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browser_panel.Location = new System.Drawing.Point(0, 58);
             this.browser_panel.Name = "browser_panel";
             this.browser_panel.Size = new System.Drawing.Size(947, 475);
             this.browser_panel.TabIndex = 3;
-            // 
-            // contextMenuStrip
-            // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.downloadVideoToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(181, 48);
-            // 
-            // downloadVideoToolStripMenuItem
-            // 
-            this.downloadVideoToolStripMenuItem.Name = "downloadVideoToolStripMenuItem";
-            this.downloadVideoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.downloadVideoToolStripMenuItem.Text = "Download Video";
-            this.downloadVideoToolStripMenuItem.Click += new System.EventHandler(this.downloadVideoToolStripMenuItem_Click);
             // 
             // frameBrowser
             // 
@@ -217,7 +184,6 @@ namespace Browser
             this.panelBody.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -231,9 +197,6 @@ namespace Browser
         private System.Windows.Forms.Button forwardBtn;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Button downloadBtn;
-        private System.Windows.Forms.Button bookmarkBtn;
         private System.Windows.Forms.Button lockIcon;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem downloadVideoToolStripMenuItem;
     }
 }
